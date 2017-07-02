@@ -1,0 +1,38 @@
+#include<iostream>
+#include <algorithm>
+#include<stdlib.h>
+using namespace std;
+typedef struct node {
+  double num, Totalprice, price;
+}yuebin;
+bool cmp(yuebin a, yuebin b) {
+  return a.price > b.price;
+}
+int main()
+{
+  yuebin D[1000];
+  int  N, i;
+  double All = 0, M;
+  cin >> N >> M;
+  for (i = 0; i < N; i++)
+    cin >> D[i].num;
+  for (i = 0; i < N; i++) {
+    cin >> D[i].Totalprice;
+    D[i].price = D[i].Totalprice*1.0 / D[i].num;
+  }
+  sort(D, D + N, cmp);
+  i = 0;
+  while (i < N&&M>0) {
+    if (M > D[i].num) {
+      M = M - D[i].num;
+      All += D[i].Totalprice;
+      i++;
+    }
+    else {
+      All += D[i].price*M;
+      M = 0;
+    }
+  }
+  printf("%0.2f", All);
+  return 0;
+}

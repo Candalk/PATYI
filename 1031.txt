@@ -1,0 +1,30 @@
+#include<iostream>
+#include<string>
+#include<vector>
+using namespace std;
+int main()
+{
+	int Q[17]={7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2},flag=1;//记录有没有错的
+	int Z[11]={0,1,2,3,4,5,6,7,8,9,10};
+	char M[12]="10X98765432";
+	int N;
+	char c[19]="";
+	cin>>N;
+	for(int i=0;i<N;i++){
+		int sum=0;
+		int prin=1;//记录身份证信息输入是否有误
+		for(int j=0;j<18;j++){
+		   cin>>c[j];
+		   if(!(c[i]>='0'&& c[i]<='9')){
+			 flag=0;
+		   }
+		   if(j<17)
+		     sum+=(c[j]-'0')*Q[j];
+		}
+		if(M[sum%11]!=c[17]){
+			cout<<c<<endl;
+			flag=0;
+		}
+	}
+	if(flag)cout<<"All passed";
+}

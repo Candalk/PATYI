@@ -1,0 +1,20 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int main() {
+	string A;
+	int a = 0, B, flag = 1;//如果flag=1说明还未输出
+	cin >> A >> B;
+	if (A.length() == 1 && (A[0] - '0')<B) { //如果A只有一个字符，且A<B，直接输出，并结束函数，比如3  7
+		cout << 0 << " " << A; 
+		return 0;
+	}
+	for (int i = 0; i<A.size(); i++) {//如果A>B
+		a = a * 10 + A[i] - '0';
+		if (a / B == 0 && flag == 1)continue;//如果还未输出，且本次结果为0，则跳过，不能输出  特殊情况000011233 7
+		cout << a / B;
+		flag = 0;
+		a = a%B;
+	}
+	cout << " " << a;
+}

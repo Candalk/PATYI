@@ -1,0 +1,28 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int main(){
+	bool flag[128]={false};
+	char c[100001]="";
+	int i=0;
+	c[i]=getchar();
+	while(c[i]!='\n'){
+		if(c[i]>='A'&&c[i]<='Z')
+			flag[c[i]+32]=true;
+	flag[c[i]]=true;//true表示键盘坏了
+	c[++i]=getchar();
+	}
+	if(c==NULL)cout<<"ok";
+	if(flag['+']){
+		int i='A';
+		while(i<='Z')
+			flag[i++]=true;		
+	}
+	cin>>c;
+	i=0;
+	while(c[i]!='\0'){
+		if(!flag[c[i]])//如果键盘没坏
+			cout<<c[i];
+	i++;
+	}
+}

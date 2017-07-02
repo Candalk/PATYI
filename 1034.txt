@@ -1,0 +1,86 @@
+#include<iostream>
+using namespace std;
+struct node {
+	long long a, b;
+}A, B;
+
+long long gcd(long long a, long long b) {
+	long long m = a%b;
+	while (m) {
+		a = b;
+		b = m;
+		m = a%b;
+	}
+	return b;
+}
+void Print(struct node A) {
+	long long GCD = gcd(A.a, A.b);
+	A.a = A.a / GCD;
+	A.b = A.b / GCD;
+	if (A.a%A.b) {
+		if (A.a>0 && A.b<0) {
+			A.a = -A.a;
+			A.b = -A.b;
+		}
+		if (abs(A.a)<abs(A.b))
+			if(A.a>0)
+			cout << A.a << "/" << A.b;
+			else cout<<"("<< A.a << "/" << A.b<<")";
+		else if (abs(A.a)>abs(A.b)) {
+			if(A.a / A.b>0)
+				printf("%lld %lld/%lld", A.a / A.b, abs(A.a%A.b), A.b);
+			else printf("(%lld %lld/%lld)", A.a / A.b, abs(A.a%A.b), A.b);
+		}
+	}
+	else {
+		if (A.a / A.b >= 0)cout << A.a / A.b;
+		else {
+			printf("(%d)", A.a / A.b);
+		}
+	}
+}
+void calculate(struct node A, struct node B, char c) {
+	struct node C;
+	switch (c) {
+	case '+':
+		C.a = A.a*B.b + A.b*B.a;
+		C.b = A.b*B.b;
+		Print(C);
+		break;
+	case '-':
+		C.a = A.a*B.b - A.b*B.a;
+		C.b = A.b*B.b;
+		Print(C);
+
+		break;
+	case '*':
+		C.a = A.a*B.a;
+		C.b = A.b*B.b;
+		Print(C);
+		break;
+	case '/':
+		C.a = A.a*B.b;
+		C.b = A.b*B.a;
+		if (C.b == 0) { cout << "Inf"; return ; }
+		if (C.b<0) {
+			C.a = -C.a;
+			C.b = -C.b;
+		}
+		Print(C);
+		break;
+	}
+
+}
+int main() {
+	scanf("%lld/%lld", &A.a, &A.b);
+	scanf("%lld/%lld", &B.a, &B.b);
+	char c[5] = "+-*/";
+	for (int i = 0; i<4; i++) {
+		Print(A);
+		cout << " " << c[i] << " ";
+		Print(B);
+		cout << " = ";
+		calculate(A, B, c[i]);
+		cout << endl;
+	}
+}
