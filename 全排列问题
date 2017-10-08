@@ -1,0 +1,25 @@
+#include<iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+string s = "123456789";
+int main() {
+	int N,i=1;
+	cin >> N;
+	s = s.substr(0,N);
+	do {
+		cout << s<<endl;
+	} while (next_permutation(s.begin(), s.end()));
+}
+
+/*
+全排列函数next_permutation
+函数原型
+1、template <class BidirectionalIterator>
+  bool next_permutation (BidirectionalIterator first, BidirectionalIterator last);
+
+2、template <class BidirectionalIterator, class Compare>
+  bool next_permutation (BidirectionalIterator first, BidirectionalIterator last, Compare comp);
+
+
+*/
